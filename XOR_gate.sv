@@ -1,7 +1,9 @@
 module XOR_gate (
-  input A,
-  input B,
-  output Y
-);
-  assign Y = A ^ B // '^' means XOR 
+    input P,
+    input Q,
+    output R
+); // Bracket yahan band hoga
+
+assign R = P ^ Q;
+
 endmodule
