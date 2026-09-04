@@ -1,33 +1,29 @@
-module XOR_gate_tb;
-  //step 1 : input ko reg aur output ko wire banana
-  reg A;
-  reg B;
-  wire Y;
+module XOR_gate_tb; // Yeh line jaruri hai
 
-  // step 2 : chip (DUT) ko testbench se jodna
-  XOR_gate dut (
-    .A(a),
-    .B(B),
-    .Y(Y)
-  );
+// step 1 : inputs ko reg aur output ko wire banana
+reg P;
+reg Q;
+wire R;
 
-  // step 3 : input badal ke check karna 
-  initial begin
-    $dumpfile("dupmp.vcd");
-    $dumpvars(1 , XOR_gate_tb);
+// step 2 : chip (DUT) ko testbench se jodna
+XOR_gate dut (
+    .P(P),
+    .Q(Q),
+    .R(R)
+);
 
-    $display(" Time\t A \ B \t Output Y (XOR)");
-    $display("-------------------------");
+// step 3 : input badal ke check karna
+initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(1, XOR_gate_tb);
+    
+    // Inputs test karne ke liye values
+    P = 0; Q = 0; #10;
+    P = 0; Q = 1; #10;
+    P = 1; Q = 0; #10;
+    P = 1; Q = 1; #10;
+    
+    $finish; 
+end 
 
-    A =0; B=0; #10;
-    $display("%Odns\t %b \t %b \t   %b",$time,A, B, Y);
-    A =0; B=1; #10;
-    $display("%Odns\t %b \t %b \t   %b",$time,A, B, Y);
-    A =1; B=0; #10;
-    $display("%Odns\t %b \t %b \t   %b",$time,A, B, Y);
-    A =1; B=1; #10;
-    $display("%Odns\t %b \t %b \t   %b",$time,A, B, Y);
-
-    $finish;
-  end
-endmodule
+endmodule 
